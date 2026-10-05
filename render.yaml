@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mock-leegality
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: MOCK_AUTH_TOKEN
+        generateValue: true
+      - key: MOCK_PRIVATE_SALT
+        generateValue: true
